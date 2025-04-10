@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Bebas+Neue&family=Electrolize&family=Monoton&family=Orbitron:wght@400..900&family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/quantum-2" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/racing-engine" rel="stylesheet">
+                   
+                
+
+    <!-- Lien vers le CSS -->
+    <link rel="stylesheet" href="../css/home-style.css">
+    <!-- Lien vers FontAwesome (Ajoute-le dans le <head>)-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Portfolio YLB</title>
+</head>
+<body>
+    <div class="logo-container">
+        <a href="portfolio-ylb.html">
+            <img class="logo hidden" src="../images/logo_ylb.png" alt="Logo">
+        </a>
+    </div>
+
+    <div class="navbar"><!-- Barre de navigation -->
+        <div class="navbar-nav">
+                <a href="#projets" class="hidden_x">Projets</a> <!-- Le bouton menu -->
+                <a href="#accueil" class="hidden_x">Accueil</a>
+                <a href="#p-skills" class="hidden_x">Professional Skills</a>
+                <a href="#w-exp" class="hidden_x">Work Experience</a>
+                <a href="#contact" class=" hidden_x">Contact</a>
+        </div>
+    </div>
+
+    <div class="video-background">
+        <video autoplay muted loop playsinline id="bg-video">
+            <source src="../background.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+    </div>
+
+    <div class="main-content">
+        <section id="home_text" class="home_text hidden">
+                <p>Mon histoire et mes créations vous attendent… Faites défiler.</p>
+                <a href="#accueil">
+                    <img src="../images/flèch.png" alt="arrow_leaf">
+                </a>
+        </section>
+
+        <section id="accueil" class="accueil">
+            <h1 class="titles">Yann LE BLANC</h1>
+            <p>
+                Étudiant en 5ème année à l’ESIEA, spécialisé en Systèmes Embarqués,
+                je mène en parallèle une alternance chez SNCF Réseau
+                en tant que Concepteur de Ressources Numériques. Mon rôle consiste
+                à concevoir des outils numériques et à automatiser des processus
+                pédagogiques pour améliorer l’efficacité opérationnelle.
+                À travers ce portfolio, je vous invite à découvrir mes compétences, mes réalisations et
+                mon parcours, marqués par des projets techniques et innovants.
+            </p>
+            <a class="oval-box hidden_1" href="CV - LE BLANC.pdf" onclick="window.open('CV - LE BLANC.pdf')" target="_blank" rel="noopener noreferrer">
+                Télécharger mon CV
+            </a>
+        </section>
+        <section id="p-skills" class="p-skills">
+            <h1 class="titles">Professional Skills</h1>
+            <p>
+                Grâce à ma formation actuelle, j'ai développé des compétences solides en
+                programmation, en électronique et en automatisme, notamment avec l'utilisation de
+                nano-ordinateurs monocartes comme le Raspberry Pi et la plateforme Arduino.
+                Mes diverses expériences professionnelles, incluant un poste chez SNCF Réseau, m'ont
+                permis d'acquérir une grande capacité d'adaptation et un sens aigu de l'organisation.
+            </p>
+            <div class="skills">
+                <div class="skill-category">
+                    <h1>Langage de programmation</h1>
+                    <div class="skill-content">
+                        <p>Python</p>
+                        <p>C/C++</p>
+                        <p>HTML/CSS/PHP</p>
+                        <p>JavaScript</p>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h1>Systèmes Embarqués</h1>
+                    <div class="skill-content">
+                        <p>VHDL</p>
+                        <p>Rasberry PI</p>
+                        <p>Arduino</p>
+                        <p>Mbed</p>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h1>Base de données</h1>
+                    <div class="skill-content">
+                        <p>SQL</p>
+                        <p>NoSQL</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="projets" class="projets hidden_1">
+            <h1 class="titles">Projets</h1>
+            <p>
+                Les projets que j'ai réalisés ont été des occasions idéales pour démontrer et enrichir
+                mes compétences en programmation et en ingénierie. J'ai contribué à l'automatisation
+                de processus, au développement de systèmes robotiques, ainsi qu'à la conception
+                d'interfaces utilisateur pour diverses applications. Ces expériences ont renforcé ma
+                maîtrise pratique et optimisé ma capacité à résoudre des problèmes techniques
+                complexes.
+            </p>
+            <a class="oval-box hidden_1" href="../menu/menu.html">Mes Réalisations</a>
+        </section>
+        <section id="w-exp" class="w-exp">
+            <h1 class="titles" style="margin-bottom: 150px;">Work Experience</h1>
+        
+            <div class="exp-container">
+                <!-- Bloc d'expérience -->
+                <div class="exp-content">
+                    <div class="top-row">
+                        <p class="text-left hidden_1" style="font-weight: bold;">Octobre 2022 - Août 2025</p>
+                        <img class="logo-SNCF hidden_1" src="../images/logo-SNCF.png" alt="logo-SNCF">
+                    </div>
+                    <div class="bottom-row">
+                        <div class="blue-bar hidden_1"></div>
+                        <div class="text-right hidden_1" style="top: 100px" id="text-right">
+                            <p>Concepteur de Ressources Numériques H/F</p>
+                            <ul>
+                                <li>Création et publication de modules e-learning sur Storyline.</li>
+                                <li>Automatisation de processus pédagogiques avec Python, HTML/CSS/PHP, JavaScript.</li>
+                                <li>Optimisation du code et  amélioration UX</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Projet ESIEA -->
+                <div class="exp-content">
+                    <div class="top-row">
+                        <p class="text-left hidden_1" style="width: 331px;right: 20px;top: 5px; font-weight: bold;">Janvier 2024</p>
+                        <img class="logo-ESIEA hidden_1" style="right: 35px;" src="../images/logo-ESIEA.png" alt="logo-ESIEA">
+                    </div>
+                    <div class="bottom-row">
+                        <div class="blue-bar hidden_1"></div>
+                        <div class="text-right hidden_1" style="top: 110px;">
+                            <p>Robotique mobile et industrielle</p>
+                            <ul>
+                                <li>Programmation d'un robot à l'aide du langage C++ consistant à reconnaître un objet parmis d'autres et s'orienter en fonction de la position de cet objet.</li>
+                                <li>Utilisation du logiciel Arduino.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet KPCOIN -->
+                <div class="exp-content">
+                    <div class="top-row">
+                        <p class="text-left hidden_1" style="width: 331px;right: 40px; font-weight: bold;">Mars 2022</p>
+                        <img class="logo-KPCoin hidden_1" style="right: 35px;" src="../images/kpcoin.png" alt="logo-KPCoin">
+                    </div>
+                    <div class="bottom-row">
+                        <div class="blue-bar hidden_1" style="margin-top: 50px;"></div>
+                        <div class="text-right hidden_1" style="top: 100px;">
+                            <p>KP Coin Beautifier</p>
+                            <ul>
+                                <li>Élaboration d'une interface graphique permettant le suivi d'une nouvelle cryptomonnaie de l'école (KP Coin).</li>
+                                <li>Utilisation du logiciel Arduino.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="contact">
+            <h3 style="top: 75px; left: 50px;">Contactez-moi</h3>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="loc-container">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <a class="loc-link" href="https://www.google.com/maps/place/93800+%C3%89pinay-sur-Seine/@48.9544669,2.2965748,14z/data=!3m1!4b1!4m6!3m5!1s0x47e668c2f597d339:0x1612651ccc37cfed!8m2!3d48.9570032!4d2.3208147!16zL20vMDJrcHN6?entry=ttu&g_ep=EgoyMDI1MDMyMy4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">93800 Épinay-sur-Seine, France</a>
+                    </div>
+                    <div class="tel-container">
+                        <i class="fa-solid fa-phone"></i>
+                        <a class="tel-link" href="tel: +33123456789" alt="tel">07.66.43.45.52</a>
+                    </div>
+                    <div class="mail-container">
+                        <i class="fa-solid fa-envelope"></i>
+                        <a class="mail-link" href="mailto:leblanc.yann1@gmail.com" alt="mail">leblanc.yann1@gmail.com</a>
+                    </div>
+                    <div class="linkedIn-container">
+                        <i class="fa-brands fa-linkedin"></i>
+                        <a class="linkedIn-link" href="https://www.linkedin.com/in/yann-le-blanc/" target="_blank" rel="noopener noreferrer">Yann LE BLANC</a>
+                    </div>
+                </div>
+                <div class="form">
+                    <div class="form-container">
+                            <div class="form-row">
+                                <input type="text" class="form-field half-width" placeholder="Nom">
+                                <input type="text" class="form-field half-width" placeholder="Prénom">
+                            </div>
+                            <div class="form-row">
+                                <input type="email" class="form-field full-width" placeholder="E-mail">
+                            </div>
+                            <div class="form-row">
+                                <textarea class="form-field full-width" placeholder="Message"></textarea>
+                            </div>
+                            <div class="form-row">
+                                <button type="submit" class="bouton" style="top: 470px;">Envoyer</button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-content" style="bottom: 0;">
+                <p>&copy; Yann LE BLANC 2025. Tous droits réservés.</p>
+            </div>
+        </section>
+        
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
