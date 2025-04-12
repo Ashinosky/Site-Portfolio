@@ -16,15 +16,19 @@
 </head>
 <body>
     <div class="navbar">
-        <a href="../portfolio-ylb.html">
-            <img class="logo_ylb hidden" src="../images/logo_ylb.png" alt="Logo">
-        </a>
+        <div class="logo-container">
+            <a href="../portfolio-ylb.html">
+                <img class="logo_ylb hidden" src="../images/logo_ylb.png" alt="Logo">
+            </a>
+        </div>
+        <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+        <button class="menu-close" style="display: none;"><i class="fas fa-times"></i></button>
         <div class="navbar-nav">
-                <a href="../menu/menu.html" class="hidden_x">Menu</a>
-                <a href="appython.html" class="hidden_x">Python</a>
-                <a href="esieabot.html" class="hidden_x">EsieaBot</a>
-                <a href="html-css.html" class=" hidden_x">HTML/CSS</a>
-                <a href="#contact" class="hidden_x">Contact</a>
+            <a href="../menu/menu.html" class="hidden_x">Menu</a>
+            <a href="appython.html" class="hidden_x">Python</a>
+            <a href="esieabot.html" class="hidden_x">EsieaBot</a>
+            <a href="html-css.html" class="hidden_x">HTML/CSS</a>
+            <a href="#contact" class="hidden_x">Contact</a>
         </div>
     </div>
 
@@ -42,9 +46,9 @@
             <p style="text-align: left; top: -10px;">Programmation et interfaçage</p>
             <p style="text-align: left; font-weight: bold; top: 20px; color: #00ffbf;">Date</p>
             <p style="text-align: left;">Avril 2024</p>
-            <img src="../images/python.jpg" class="hidden_x" alt="python" style="position: absolute; top: 530px; left: 20px; border-radius: 10px;">
-            <div class="task-descr-right" style="top: 145px;">
-                <p>
+            <img src="../images/python.jpg" class="tdr-python hidden_x" alt="python">
+            <div class="task-descr-right">
+                <h1>
                     J'ai conçu et implémenté une solution logicielle modulaire en Python pour
                     optimiser la gestion des contenus pédagogiques. L'architecture inclut des
                     modules ETL (extraction, transformation, charement de données bibliographiques
@@ -53,24 +57,20 @@
                     interface drag-and-drop asynchrone pour une UX fluide. Cette solution full-stack
                     réduit de 70% le temps des tâches répétitives tout en garantissant la cohérence
                     des données.
-                </p>
+                <h1>
             </div>
-            <div class="carousel-container" style="top: 300px;">
+            <div class="carousel-container">
                 <button class="prev">&#10094;</button> <!-- Flèche gauche -->
                 <div class="carousel">
                     <div class="carousel-images">
                         <img src="../images/Python/sncf-reseau.png" alt="logo-SNCF">
                         <img src="../images/Python/upload.jpg" alt="upload" style="right: 20px;">
-                        <img src="../images/Python/Liste des références d'une formation (sur Word).png" alt="ref" style="left: 150px;">
+                        <img src="../images/Python/Liste des références d_une formation (sur Word).png" alt="ref" style="left: 150px;">
                         <img src="../images/Python/Avant_Référencement.png" alt="av_ref" style="left: 400px;">
                         <img src="../images/Python/Après_Référencement.png" alt="ap_ref" style="left: 500px;">
                     </div>
                 </div>
-                <!-- Lightbox -->
-                <div id="lightbox" class="lightbox">
-                    <span class="close">&times;</span>
-                    <img class="lightbox-content" id="lightbox-img" src="" alt="Image agrandie">
-                </div>
+
                 <button class="next">&#10095;</button> <!-- Flèche droité -->
             </div>
         </section>
@@ -80,19 +80,27 @@
             <div class="contact-container">
                 <div class="contact-info">
                     <div class="loc-container">
-                        <i class="fa-solid fa-location-dot"></i>
+                        <a href="https://www.google.com/maps/place/93800+%C3%89pinay-sur-Seine/@48.9544669,2.2965748,14z/data=!3m1!4b1!4m6!3m5!1s0x47e668c2f597d339:0x1612651ccc37cfed!8m2!3d48.9570032!4d2.3208147!16zL20vMDJrcHN6?entry=ttu&g_ep=EgoyMDI1MDMyMy4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </a>
                         <a class="loc-link" href="https://www.google.com/maps/place/93800+%C3%89pinay-sur-Seine/@48.9544669,2.2965748,14z/data=!3m1!4b1!4m6!3m5!1s0x47e668c2f597d339:0x1612651ccc37cfed!8m2!3d48.9570032!4d2.3208147!16zL20vMDJrcHN6?entry=ttu&g_ep=EgoyMDI1MDMyMy4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">93800 Épinay-sur-Seine, France</a>
                     </div>
                     <div class="tel-container">
-                        <i class="fa-solid fa-phone"></i>
-                        <a class="tel-link" href="tel: +33123456789" alt="tel">07.66.43.45.52</a>
+                        <a href="tel: +33766434552">
+                            <i class="fa-solid fa-phone"></i>
+                        </a>
+                        <a class="tel-link" href="tel: +33766434552" alt="tel">07.66.43.45.52</a>
                     </div>
                     <div class="mail-container">
-                        <i class="fa-solid fa-envelope"></i>
+                        <a href="mailto:leblanc.yann1@gmail.com">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
                         <a class="mail-link" href="mailto:leblanc.yann1@gmail.com" alt="mail">leblanc.yann1@gmail.com</a>
                     </div>
                     <div class="linkedIn-container">
-                        <i class="fa-brands fa-linkedin"></i>
+                        <a href="https://www.linkedin.com/in/yann-le-blanc/">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
                         <a class="linkedIn-link" href="https://www.linkedin.com/in/yann-le-blanc/" target="_blank" rel="noopener noreferrer">Yann LE BLANC</a>
                     </div>
                 </div>
@@ -114,8 +122,23 @@
                     </div>
                 </div>
             </div>
+            <!-- Icônes mobiles (s'affichent uniquement en version mobile) -->
+            <div class="contact-icons-mobile">
+                <a href="https://www.google.com/maps/place/93800+%C3%89pinay-sur-Seine/@48.9544669,2.2965748,14z/data=!3m1!4b1!4m6!3m5!1s0x47e668c2f597d339:0x1612651ccc37cfed!8m2!3d48.9570032!4d2.3208147!16zL20vMDJrcHN6?entry=ttu&g_ep=EgoyMDI1MDMyMy4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-location-dot"></i>
+                </a>
+                <a href="tel: +33766434552">
+                    <i class="fa-solid fa-phone"></i>
+                </a>
+                <a href="mailto:leblanc.yann1@gmail.com">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/yann-le-blanc/" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+            </div>
             <div class="footer-content" style="bottom: 0;">
-                <p>&copy; Yann LE BLANC 2025. Tous droits réservés.</p>
+                <p>&copy; Yann LE BLANC 2025.<br>Tous droits réservés.</p>
             </div>
         </section>
     </div>
