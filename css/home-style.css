@@ -1,0 +1,1341 @@
+<style>
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
+    body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow-x: clip;
+        font-family: Arial, sans-serif;
+        scroll-behavior: smooth; /* Défilement fluide */
+    }
+
+    /* Arrière-plan */
+    .video-background { 
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: url('fallback-image.jpg') no-repeat center center/cover;
+    }
+
+    #bg-video { 
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    /* Contenu total du site */
+    .main-content {
+        position: relative;
+        top: 550px;
+        transform: translateY(350px);
+        z-index: 1;
+        display: flex;
+        flex-direction: column; /* Pour aligner les éléments en colonne */
+        justify-content: center;
+        align-items: stretch;
+        color: white;
+        text-align: center;
+        width: 100%;
+        gap: 50px; /* Espacement entre les éléments*/
+    }
+
+    /* Barre de navigation */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 10%;
+        z-index: 100;
+        backdrop-filter: blur(10px);
+        mask-image: linear-gradient(to bottom, black 50%, transparent 100%); /* Dégradé de masque */
+        display: flex;
+        align-items: center; /* Aligner verticalement les éléments */
+        justify-content: right; /* Répartit l'espace de façon égale */
+        padding: 20px 50px;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0.3s, opacity 0.3s ease-in-out;
+    }
+    
+    .navbar img {
+        height: 100px; /* Taille du logo */
+    }
+
+    .navbar-nav {
+        display: flex;
+        align-items: center; /* Centrer verticalement les éléments du menu */
+        /*flex-grow: 1; /* Permet au menu de s'étendre */ 
+        margin-right: 50px;
+        gap: 20px; /* Espacement entre les éléments */
+    }
+
+    .navbar-nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 20;
+        text-transform: uppercase;
+        transition: color 0.3s;
+        font-family: Electrolize, sans-serif;
+        font-weight: bold;
+        margin: 0 40px; /* Ajoute un espacement horizontal de 50px de chaque côté */
+    }
+
+    .navbar-nav a:hover {
+        text-decoration: underline; /* Souligner au survol */
+        color: #00ffbf; /* Couleur au survol */
+    }
+    
+    .navbar-nav .active {
+        color: #f0a500;
+    }
+
+    .navbar-nav a.hidden {
+        transform: translateX(50px); 
+    }
+    
+    .navbar.scrolled {
+        visibility: visible;
+        opacity: 1; /* Affiche la navbar après le scroll */
+    }
+
+    .navbar.scrolled .logo-container {
+        position: fixed;
+        top: 10px; /* Position fixe en haut */
+        left: 10px;
+        transform: translate(0, 0); /* Réinitialise la position */
+        width: 80px;
+        height: 80px;
+    }
+
+    /* Éléments de la navbar cachés au départ */
+    .navbar-nav a.hidden_x {
+        opacity: 0;
+        transform: translateX(20px); /* Déplacement depuis la droite */
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    /* Éléments de la navbar visibles après le scroll */
+    .navbar.scrolled .navbar-nav a.hidden_x {
+        opacity: 1;
+        transform: translateY(0); /* Réinitialise la position */
+    }
+
+    .navbar .logo {
+        display: none; /* Masque le logo de la navbar */
+    }
+
+    /* Cacher le menu et les boutons par défaut */
+    .menu-toggle,
+    .menu-close {
+        display: none;
+    }
+
+    /* Logo-container indépendant */
+    .logo-container {
+        position: fixed;
+        top: 50%; /* Position fixe au centre */
+        left: 50%; /* Centré horizontalement */
+        transform: translate(-50%, -50%); /* Centré verticalement */
+        width: 1300px; /* Largeur du conteneur */
+        height: auto;
+        z-index: 200; /* Au-dessus de tout */
+        transition: top 0.5s ease, left 0.5s ease, transform 0.5s ease, width 0.5s ease; /* Transition fluide pour les propriétés modifiées */
+        opacity: 1; /* Visible au départ */
+        mask-image: linear-gradient(to bottom, black 60%, transparent 100%); /* Dégradé de masque */
+    }
+
+    /* Logo */
+    .logo {
+        width: 100%;
+        height: auto;
+        transition: all 0.5s ease; /* Transition douce pour le changement de taille */
+    }
+
+    /* Logo réduit et déplacé (après scroll) */
+    .logo-container.scrolled {
+        top: 10px; /* Position fixe en haut */
+        left: 10px;
+        transform: none; /* Réinitialise la position */
+        width: 200px; /* Réduit la taille du conteneur */
+        height: auto;
+        opacity: 1; /* Disparaît progressivement */
+    }
+
+    /* Logo réduit */
+    .logo-container.scrolled .logo {
+        width: 100%; /* Réduit la taille du logo */
+        height: auto;
+    }
+
+    /* Animation de la flèche de l'accueil */
+    @keyframes floatAnimation {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-25px); /* Monte de 15px */
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    /* Texte acceuil */
+    .home_text {
+        color: white;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .home_text p {
+        font-family: 'Quantum', sans-serif;
+        font-weight: 400;
+        font-size: 60px;
+        color: #00ffbf;
+        max-width: 900px; /* Pour limiter la largeur du paragraphe */
+        margin: 0 auto 40px; /* Centrage automatique */
+        line-height: 1.6; /* Meilleure lisibilité */
+    }
+
+    /* Flèche */
+    .home_text a {
+        position: relative;
+        margin: 0 auto 40px;
+        width : 150px;
+        height : 150px;
+        animation: floatAnimation 2s infinite ease-in-out;
+    }
+
+    .home_text a img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+    /* Cacher - Montrer des éléments */
+    .hidden, .hidden_1, .hidden_x { /* Pour les éléments de la première section */
+        opacity: 0; /* Cache les éléments au départ */
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .hidden {
+        transform: translateY(50px);
+    }
+    .hidden_x {
+        transform: translateX(50px); /* Déplacement depuis la droite */
+    }
+    .hidden_1 { /* Pour les autres éléments */
+        transform: translateY(50px);
+    }
+
+    .show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .show_x {
+        opacity: 1 !important;
+        transform: translateX(0) !important; /* Réinitialise la position */
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out !important;
+    }
+    
+    /* Section accueil */
+    .accueil {
+        display: flex;
+        justify-content: center;
+        align-items: center ;
+        flex-direction: column;
+        gap: 50px;
+        min-height: 100vh; /* Assure que la section a au moins la hauteur de l'écran */
+        padding-top: 40px; /* Décalage pour éviter d'être caché par la navbar */ 
+    }
+
+    .titles {
+        font-family: 'Quantum', sans-serif;
+        font-weight: 400;
+        font-size: 60px;
+        color: #00ffbf;
+        max-width: 800px; /* Pour limiter la largeur du paragraphe */
+        margin: 0 auto 40px; /* Centrage automatique */
+        line-height: 1.6; /* Meilleure lisibilité */
+    }
+
+    .accueil p {
+        font-family: Electrolize, sans-serif;
+        font-weight: 400;
+        font-size: 20px;
+        max-width: 800px; /* Pour limiter la largeur du paragraphe */
+        margin: 0 auto 40px; /* Centrage automatique */
+        line-height: 1.6; /* Meilleure lisibilité */
+        /*visibility: hidden; /* Cache le texte au départ */
+        /*white-space: pre-line; /* Garde les sauts de ligne */
+    }
+
+    .oval-box { /* Bouton CV/portfolio */
+        width: 300px;   /* Largeur */
+        height: 70px;  /* Hauteur */
+        font-family: Electrolize, monospace;
+        font-size: 20px;
+        font-weight: 400;
+        color: white;
+        background: linear-gradient(#1a1f36, #00ffbf); /* Couleur de fond */
+        border-radius: 50px / 50%; /* Arrondi sur les côtés uniquement */
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        text-decoration: none;
+    }
+
+    .oval-box:hover {
+        text-decoration: underline;
+        
+    }
+
+    /* Section Professional Skills */
+    .p-skills { 
+        text-align: center;
+        padding: 50px 20px;
+    }
+    
+    .p-skills p {
+        font-family: Electrolize, sans-serif;
+        font-weight: 400;
+        font-size: 20px;
+        max-width: 800px; /* Pour limiter la largeur du paragraphe */
+        margin: 0 auto 40px; /* Centrage automatique */
+        line-height: 1.6; /* Meilleure lisibilité */
+    }
+
+    /* Conteneur des catégories des skills */
+    .skills {
+        display: flex;  /* Active le mode flexbox */
+        justify-content: center;  /* Centre les éléments horizontalement */
+        align-items: center;
+        flex-wrap: wrap; /* Passe sur plusieurs lignes si l'écran est petit */
+        gap: 50px;  /* Espacement entre les éléments */
+        text-align: center;
+    }
+
+    /* Catégories individuelles */
+    .skill-category {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 15px; /* Optionnel : Ajoute un espace intérieur */
+        border-radius: 5px; /* Optionnel : Bords arrondis */
+    }
+
+    /* Titres des sous-catégories */
+    .skill-category h1 {
+        font-family: Electrolize, sans-serif;
+        font-weight: bold;
+        font-size: 20px;
+        color: #00ffbf;
+    }
+
+    /* Contenu de chaque skill */
+    .skill-content {
+        list-style-type: disc;
+        margin-top: 10px;
+        padding: 15px;
+        width: 200px; /* Ajuste la largeur des blocs */
+        border-radius: 10px; /* Coins arrondis */
+    }
+
+    .skill-content p {
+        margin: 5px 0;
+    }
+
+    .projets {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 100px 20px;
+        gap: 50px;
+    }
+
+    .projets p {
+        font-family: Electrolize, sans-serif;
+        font-weight: 400;
+        font-size: 20px;
+        max-width: 800px; /* Pour limiter la largeur du paragraphe */
+        margin: 0 auto 40px; /* Centrage automatique */
+        line-height: 1.6; /* Meilleure lisibilité */
+    }
+
+    /* Work Experience */
+    .w-exp {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+            /* Cache les textes avant l'animation */
+    .p-skills p, .projets p, .w-exp p, .text-right li, .text-left li, .accueil p {
+        opacity: 0;
+        transition: opacity 0.5s ease-in;
+    }
+
+    /* Une fois animé, le texte reste visible */
+    .typed {
+        opacity: 1;
+    }
+
+    .w-exp p {
+        font-family: Electrolize, sans-serif;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 1.6; /* Meilleure lisibilité */
+    }
+
+    .exp-container { /* Conteneur d'une exp */ 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+        width: 100%;
+    }
+
+    .exp-content { /* Conteneur de l'exp */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+    }
+
+    /* Ligne du haut (Date + Logo) */
+    .top-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        margin-right: 280px;
+    }
+    
+    .text-left { /* Date */
+        font-family: Electrolize, sans-serif;
+        font-weight: 400;
+        font-size: 20px;
+        color: #00ffbf;
+        position: relative;
+        flex: 1;
+        text-align: right; /* Aligner le texte à droite */
+        width: 260px;
+    }
+
+    .logo-SNCF {
+        width: 120px;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        position: relative;
+    }
+
+    .logo-ESIEA {
+        width: 200px;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        position: relative;
+    }
+
+    .logo-KPCoin {
+        width: 150px;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        position: relative;
+    }
+
+    .bottom-row {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 40px;
+        margin-left: 550px;
+    }
+
+    .logo-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centre le logo et la barre bleue */
+        flex: 1;
+    }
+
+    .blue-bar {
+        background-color: #00ffbf; /* Couleur de la barre bleue */
+        width: 10px;
+        height: 300px;
+    }
+    
+    .text-right { /* Description postes */
+        font-family: Electrolize, sans-serif;
+        font-weight: 400;
+        font-size: 18px;
+        flex: 1;
+        text-align: left; /* Aligner le texte à droite */
+        width: 500px;
+        position: relative;
+    }
+
+    .text-right p {
+        font-weight: bold;
+        color: #00ffbf;
+    }
+    
+    /* Contact */
+    .contact {
+        mask-image: linear-gradient(to top, black 85%, transparent 100%); /* Dégradé de masque */
+        background: linear-gradient(to right, rgb(0, 0, 0) 20%, rgb(200, 200, 200) 100%);
+        width: 100%;
+        min-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        position: relative;
+        margin-top: 50px;
+    }
+    
+    .contact h3 {
+        font-family: 'Quantum', sans-serif;
+        font-weight: 400;
+        font-size: 65px;
+        color: #00ffbf;
+        position: relative;
+        display: flex;
+        top: 75px;
+        left: -580px;
+    }
+
+    .contact-container {
+        position: relative;
+        top: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+    }
+    .contact-info {
+        margin-top: 50px;
+        margin-left: 50px;
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+    }
+
+    .loc-container, .tel-container, .mail-container, .linkedIn-container { /* Conteneurs des infos */
+        position: relative;
+        display: flex;
+        left: 50px;
+        align-items: center;
+    }
+
+    .loc-container i, .tel-container i, .mail-container i, .linkedIn-container i { /* Icones */
+        font-size: 40px;
+        margin-right: 20px;
+        color: #ffffff;
+    }
+
+    .loc-container i:hover, .tel-container i:hover, .mail-container i:hover, .linkedIn-container i:hover {
+        color: #00ffbf;
+    }
+    .loc-link, .tel-link, .mail-link, .linkedIn-link { /* Liens */
+        font-family: Electrolize, sans-serif;
+        font-weight: 400;
+        font-size: 18px;
+        text-decoration: none; /* Ajout de soulignement au survol */
+        color: white;
+    }
+
+    .loc-link:hover, .tel-link:hover, .mail-link:hover, .linkedIn-link:hover {
+        color: #00ffbf;
+        text-decoration: underline;
+    }
+
+    .form {
+        position: relative;
+        left: -75px;
+        width: 55%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .form-container {
+        margin: auto;
+        width: 100%;
+        max-width: 800px;
+    }
+
+    .form-row {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 50px;
+        font-family: Electrolize, sans-serif;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 1.6; /* Meilleure lisibilité */
+    }
+
+    .form-field {
+        width: 100%;
+        padding: 10px;
+        margin: 5px; /*Espacement entre les champs si nécessaire*/
+        box-sizing: border-box; /*Inclut notre padding dans la largeur totale */
+        margin-top: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .half-width {
+        width: 48%; /*Deux champs sur la même ligne prennent chacun environ la moitié de la largeur*/
+        box-sizing: border-box; /*Inclut le padding dans la largeur totale*/
+    }
+
+    .full-width {
+        width: 100%;
+    }
+
+    .bouton {
+        background: linear-gradient(#1a1f36, #00ffbf);
+        border-radius: 10px;
+        width: 120px;
+        height: 50px;
+        color: white;
+        font-family: Electrolize, sans-serif;
+        font-weight: 400;
+        font-size: 15px;
+    }
+
+    .bouton:hover {
+        text-decoration: underline;
+        
+    }
+    
+    .intro {
+        position: relative;
+        top: -150px;
+        display: flex;
+        justify-content: center;
+        align-items: center ;
+        flex-direction: column;
+        gap: 50px;
+        min-height: 100vh; /* Assure que la section a au moins la hauteur de l'écran */
+    }
+
+    .intro p {
+        font-family: Electrolize, sans-serif;
+        font-weight: 400;
+        font-size: 20px;
+        max-width: 800px; /* Pour limiter la largeur du paragraphe */
+        margin: 0 auto 40px; /* Centrage automatique */
+        line-height: 1.6; /* Meilleure lisibilité */
+    }
+
+    .menu-container{
+        margin-top: 100px;
+        display: flex;
+        justify-content: space-around; /*Distribue espace entre les objets*/
+        align-items: flex-end; /*Aligne les objets en bas*/
+        gap: 20px; /*Optionnal : espacement supplémentaire entre les éléments*/
+    }
+
+    .selection {
+        position: relative;
+        width: 500px;
+        height: 400px;
+        overflow: hidden; /* Empêche le dépassement */ 
+    }
+
+    .selection img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+        transition: filter 0.3s ease-in-out; /* Animation fluide */
+    }
+
+    .selection:hover img {
+        filter: brightness(0.5); /* Assombrit l'image */
+        transform: scale(0.9); /*Réduit la taille à 90%*/
+        transition: transform 0.3s ease-in-out; /*Animation fluide sur 0.3s*/
+    }
+
+    .overlay-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        text-align: center;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        opacity: 0; /* Caché par défaut */
+        transition: opacity 0.3s ease-in-out;
+        font-family: Electrolize, sans-serif;
+        font-weight: 400;
+        font-size: 20px;
+    }
+
+    .selection:hover .overlay-text {
+        opacity: 1; /* Rend visible au survol */
+    }
+
+    .footer-content {
+        color: #ffffff;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        margin-top: 20px;
+    }
+
+    .footer-content p {
+        font-family: Electrolize, sans-serif;
+        font-weight: 400;
+        font-size: 15px;
+        margin-bottom: 25px;
+    }
+    .footer-content a {
+        color: #ffffff;
+        text-decoration: none;/*Supprime le soulignement des liens*/
+        margin-right: 15px;/*Ajoute un espacement entre les liens*/
+    }
+
+    .footer-content a:hover {
+        text-decoration: underline;
+    }
+
+    .contact-icons-mobile {
+        display: none; /* Par défaut : caché */
+    }
+        
+    @media screen and (min-width: 769px) {
+        .menu-toggle, .menu-close {
+            display: none; /* Cache le bouton menu-toggle */
+            opacity: 0; /* Cache le bouton menu-close */
+        }
+    }
+
+        /* Responsive pour PC portable (moins de 1366px de largeur) */
+    @media screen and (max-width: 1366px) {
+        .navbar {
+            padding: 15px 30px; /* Réduction du padding */
+        }
+
+        .navbar img {
+            height: 80px; /* Taille du logo réduite */
+        }
+
+        .navbar.scrolled {
+            height: 15%;
+        }
+
+        .navbar-nav a {
+            position: relative;
+            top: -15px; /* Décalage vers le haut */
+            font-size: 18px;
+            margin: 0 20px; /* Moins d'espace entre les éléments */
+        }
+
+        .main-content {
+            margin-top: 100px;
+            gap: 30px;
+        }
+
+        .home_text p {
+            font-size: 40px; /* Réduction du texte */
+        }
+
+        .arrow_leaf {
+            width: 100px;
+            height: 100px;
+        }
+
+        .logo-container {
+            width: 1000px; /* Réduction de la taille initiale du logo */
+        }
+
+        .logo-container.scrolled {
+            width: 150px; /* Taille réduite du logo après scroll */
+        }
+
+        .contact h3 {
+            left: -25vw; /* Décalage à gauche */
+        }
+    }
+
+    /* Responsive pour tablette (moins de 1024px de largeur) */
+@media screen and (max-width: 1024px) {
+
+    .logo-container {
+        width: 600px;
+    }
+
+    .navbar.scrolled .logo-container {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .navbar.scrolled {
+        height: 33%;
+    }
+
+    .logo-container.scrolled {
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 250px;
+        height: auto;
+        z-index: 1001;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        height: 15%;
+        filter: blur(5px);
+    }
+
+    .menu-toggle, .menu-close {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 40px;
+        background: none;
+        border: none;
+        font-size: 28px;
+        color: white;
+        cursor: pointer;
+        z-index: 1100;
+    }
+
+    .menu-close {
+        display: none;
+        z-index: 1101;
+    }
+
+    .navbar-nav {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 70%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.9);
+        padding: 30px;
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+    }
+
+    .navbar-nav.show {
+        display: flex;
+    }
+
+    .navbar-nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 24px;
+        font-weight: bold;
+        margin: 12px 0;
+        transition: color 0.3s ease;
+    }
+
+    .navbar-nav a:hover {
+        color: #00ffbf;
+    }
+
+    .body.blurred {
+        pointer-events: none;
+        overflow: hidden;
+        filter: blur(5px);
+    }
+
+    .navbar,
+    .navbar-nav {
+        pointer-events: auto;
+        filter: none;
+    }
+
+    .main-content {
+        width: 100%;
+        margin-top: 60px;
+        gap: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .titles {
+        font-size: 45px;
+    }
+
+    .home_text {
+        margin-top: 50px;
+    }
+
+    .home_text p {
+        font-size: 28px;
+        width: 90%;
+    }
+
+    .home_text a {
+        width: 80px;
+        height: 80px;
+    }
+
+    .accueil p {
+        font-size: 20px;
+        width: 85%;
+    }
+
+    .arrow_leaf {
+        width: 70px;
+        height: 70px;
+    }
+
+    .p-skills {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .skills {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .skill-category {
+        width: 100%;
+        position: relative;
+    }
+
+    .top-row {
+        width: 60%;
+        margin-right: 50%;
+    }
+
+    .top-row p {
+        font-size: 12px;
+    }
+
+    .top-row img {
+        width: 100px;
+    }
+
+    .blue-bar {
+        width: 6px;
+        height: 220px;
+    }
+
+    .logo-ESIEA {
+        left: 0;
+    }
+
+    .logo-KPCoin {
+        left: 0;
+    }
+    .bottom-row {
+        margin-left: 49.5%;
+    }
+
+    .text-right {
+        width: 55%;
+        left: -5%;
+
+    }
+
+    .text-right p,
+    .text-right ul {
+        font-size: 12px;
+    }
+
+    .contact h3 {
+        font-size: 42px;
+        margin-top: 80px;
+    }
+
+    .contact-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .contact-info {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .form {
+        width: 90%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .form-container {
+        width: 100%;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 25px;
+        width: 90%;
+    }
+
+    .form-field {
+        padding: 12px;
+        font-size: 18px;
+        width: 100% !important;
+    }
+
+    .bouton {
+        padding: 12px 24px;
+        font-size: 20px;
+        width: 100%;
+        position: relative;
+        margin-top: 40px;
+    }
+}
+
+
+    /* Responsive pour téléphone (moins de 768px de largeur) */
+    @media screen and (max-width: 768px) {
+
+        .logo-container {
+            width: 800px; /* Réduction de la taille initiale du logo */
+        }
+        .navbar.scrolled .logo-container {
+            left: 50%; /* Centré horizontalement */
+            transform: translateX(-50%);
+        }
+
+        .logo-container.scrolled {
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: auto;
+            z-index: 1001; /* Au-dessus de tout */
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            height: 25%;
+
+        }
+
+        .menu-toggle {
+            display: block;
+            position: absolute;
+            top: 20px;
+            right: 50px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            z-index: 1100;    
+        }
+
+        /* Par défaut, cacher le bouton de fermeture */
+        .menu-close {
+            display: none;
+            position: absolute;
+            top: 20px;
+            right: 50px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            z-index: 1101;
+        }
+
+        .navbar-nav {
+            display: none; /* Caché par défaut */
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 90%; /* Prend 90% de la largeur */
+            height: 100vh; /* Prend toute la hauteur */
+            background-color: rgba(0, 0, 0, 0.9); /* Fond semi-transparent */
+            padding: 20px;
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px; /* Coins arrondis */
+        }
+
+        .navbar.show {
+            visibility: visible; /* Affiche la navbar */
+            opacity: 1; /* Rend la navbar visible */
+            transition: visibility 0.3s, opacity 0.3s ease-in-out; /* Transition fluide */
+            left: -25px;
+        }
+
+        .navbar.fullscreen {
+            position: fixed; /* Fixe la navbar pour qu'elle couvre tout l'écran */
+            top: 0;
+            left: 0;
+            width: 100vw; /* Prend toute la largeur de l'écran */
+            height: 110%; /* Prend toute la hauteur de l'écran */
+            background: linear-gradient(to bottom, rgb(0, 0, 0) 20%, rgb(200, 200, 200) 100%);
+            mask-image: linear-gradient(to bottom, black 60%, transparent 100%); /* Dégradé de masque */
+            z-index: 1000; /* Assure que la navbar est au-dessus des autres éléments */
+            display: flex;
+            flex-direction: column; /* Aligne les éléments en colonne */
+            justify-content: center; /* Centre les éléments verticalement */
+            align-items: center; /* Centre les éléments horizontalement */
+            transition: all 0.3s ease-in-out; /* Transition fluide pour l'animation */
+        }
+
+        .navbar-nav.show {
+            display: flex; /* Affiche les liens de navigation au clic */
+            flex-direction: column; /* Aligne les liens en colonne */
+            gap: 20px; /* Espacement entre les liens */
+            text-align: center;
+            top: -26px; /* Positionne en haut de l'écran */
+        }
+
+        .body.blurred {
+            pointer-events: none; /* Désactive les événements de la souris sur le reste du corps */
+            overflow: hidden; /* Empêche le défilement de la page */
+            filter: blur(5px); /* Applique un flou au reste du corps */
+        }
+        .navbar-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .logo {
+            display: block; /* Affiche le logo dans la navbar */
+            height: 50px; /* Taille réduite du logo */
+        }
+        .navbar img {
+            height: 60px; /* Logo plus petit */
+            margin-bottom: 10px;
+        }
+        
+        .navbar-nav a:hover {
+            color: #00ffbf; /* Couleur au survol */
+        }
+
+        /* Afficher le bouton de fermeture lorsque le menu est ouvert */
+        .navbar-nav.show + .menu-close {
+            display: block;
+        }
+
+        /* Supprimer le flou pour la navbar */
+        .navbar, .navbar-nav {
+            pointer-events: auto; /* Permet les interactions avec la navbar */
+            filter: none; /* Supprime le flou */
+        }
+
+        .main-content {
+            top: 400px;
+            width: 100%;
+            gap: 15px;
+            display: flex;
+            flex-direction: column; /* Aligne les éléments en colonne */
+            align-items: center; /* Centre les éléments horizontalement */
+        }
+
+        .titles {
+            font-size: 40px; /* Réduction de la taille du titre */
+        }
+
+        .home_text {
+            margin-top: 50px;
+        }
+        .home_text p {
+            font-size: 30px; /* Texte réduit */
+            width: 95%; /* Limite la largeur du texte */
+        }
+
+        .home_text a {
+            width: 75px; /* Réduction de la taille de la flèche */
+            height: 75px;
+        }
+
+        .accueil p {
+            font-size: 20px; /* Réduction de la taille du texte */
+            width: 90%; /* Limite la largeur du texte */
+        }
+
+        .arrow_leaf {
+            width: 60px;
+            height: 60px;
+        }
+
+        .p-skills {
+            display: flex;
+            flex-direction: column; /* Aligne les éléments en colonne */
+            align-items: center; /* Centre les éléments horizontalement */
+        }
+        .skills {
+            display: flex;
+            flex-direction: column; /* Les catégories passent en colonne */
+            align-items: center; /* Centre les éléments horizontalement */
+            gap: 20px;
+        }
+
+        .skill-category {
+            width: 100%; /* Les catégories prennent toute la largeur */
+            position: relative;
+        }
+
+        .projets p {
+            font-size: 18px; /* Réduction de la taille du texte */
+            width: 90%; /* Limite la largeur du texte */
+        }
+        .top-row {
+            width: 50%;
+            margin-right: 30%;
+        }
+
+        .top-row p {
+            font-size: 10px; /* Réduction de la taille du texte */
+        }
+        .top-row img {
+            width: 80px; /* Réduction de la taille des logos */
+            height: auto;
+        }
+
+        .blue-bar {
+            width: 5px; /* Réduction de la largeur de la barre bleue */
+            height: 200px; /* Réduction de la hauteur de la barre bleue */
+        }
+
+        .bottom-row {
+            margin-left: 50%;
+        }
+
+        .text-right {
+            width: 50%;
+            position: relative;
+            left: -5%; /* Ajustement de la position */
+        }
+        .text-right p, .text-right ul {
+            font-size: 10px; /* Réduction de la taille du texte */
+        }
+/* --- Contact --- */
+
+.contact {
+    height: 30%;
+    margin-top: 150px;
+    left: 0;
+}
+.contact h3 {
+    left: 0;
+    font-size: 40px;
+    margin-top: 100px;
+}
+
+.contact-container {
+    flex-direction: column; /* Les sections contact passent en colonne */
+    height: 40%;
+    gap: 30px;
+}
+
+.contact-info {
+    height: 0;
+    margin-top: 0;
+}
+
+.footer-content {
+    margin-top: 20px;
+    font-size: 12px;
+}
+.form {
+    width: 95%;
+    display: flex;
+    justify-content: center;
+}
+
+.form-container {
+    width: 100%;
+    position: relative;
+    left: 20%;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+    width: 90%;
+}
+
+.form-field {
+    padding: 10px;
+    font-size: 16px;
+    width: 100% !important;
+    box-sizing: border-box;
+}
+
+.bouton {
+    padding: 10px 20px;
+    font-size: 18px;
+    width: 100%;
+    top: unset !important;
+    position: relative;
+    margin-top: 50px;
+}
+
+ /* Cache les liens textes dans contact-info */
+.contact-info a {
+display: none;
+}
+
+/* Nouveau style pour affichage icônes en ligne */
+.contact-icons-mobile {
+display: flex;
+justify-content: center;
+gap: 30px;
+margin-top: 40px;
+}
+
+.contact-icons-mobile i {
+font-size: 30px;
+color: white;
+transition: color 0.3s;
+}
+
+.contact-icons-mobile i:hover {
+color: #00ffbf;
+}
+    }
+
+</style>
