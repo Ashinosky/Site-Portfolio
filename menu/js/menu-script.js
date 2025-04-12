@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }, index * 300);
     });
 
-    const mainElements = document.querySelectorAll(".logo_ylb.hidden, .home_text.hidden, .arrow_leaf.hidden, .task-descr img.hidden");
+    const mainElements = document.querySelectorAll(".logo_ylb.hidden, .home_text.hidden, .arrow_leaf.hidden, .menu-container");
 
     mainElements.forEach((element, index) => {
         setTimeout(() => {
@@ -142,5 +142,43 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
     
+    const menuToggle = document.querySelector(".menu-toggle");
+    const menuClose = document.querySelector(".menu-close");
+    const navbarNav = document.querySelector(".navbar-nav");
+    const body = document.body;
+    const navbar = document.querySelector(".navbar"); // Ajout de la sélection de la navbar
+
+    // Gérer le clic sur le bouton menu-toggle
+    menuToggle.addEventListener("click", () => {
+        navbar.classList.add("fullscreen"); // La navbar prend toute la page
+        navbarNav.classList.add("show"); // Affiche les liens
+        body.classList.add("blurred"); // Désactive le défilement
+        menuToggle.style.display = "none"; // Cache le bouton hamburger
+        menuClose.style.display = "block"; // Affiche le bouton de fermeture
+    });
+
+    // Gérer le clic sur le bouton de fermeture
+    menuClose.addEventListener("click", () => {
+        navbar.classList.remove("fullscreen"); // Réduit la navbar
+        navbarNav.classList.remove("show"); // Cache les liens
+        body.classList.remove("blurred"); // Réactive le défilement
+        menuToggle.style.display = "block"; // Affiche le bouton hamburger
+        menuClose.style.display = "none"; // Cache le bouton de fermeture
+    });
+
+    // Gérer le clic sur les liens du menu
+    const menuLinks = document.querySelectorAll(".navbar-nav a");
+    menuLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            console.log(`Lien cliqué : ${link.getAttribute("href")}`); // Affiche le lien cliqué dans la console
+
+            // Fermer le menu après un clic sur un lien
+            navbar.classList.remove("fullscreen");
+            navbarNav.classList.remove("show");
+            body.classList.remove("blurred");
+            menuToggle.style.display = "block";
+            menuClose.style.display = "none";
+        });
+    });
 
 });
