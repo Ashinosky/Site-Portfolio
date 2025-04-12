@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 // Sélectionne tous les textes et images concernés
-const allTextElements = document.querySelectorAll(".task-descr h1, .task-descr p, .task-descr-right p, .titles, .fa-solid, .fa-brands.fa-linkedin, .loc-link, .tel-link, .mail-link, .linkedIn-link");
+const allTextElements = document.querySelectorAll(".task-descr h1, .task-descr-right h1, .task-descr-right h2, .task-descr-right h3, .task-descr p, .task-descr-right p, .titles, .fa-solid, .fa-brands.fa-linkedin, .loc-link, .tel-link, .mail-link, .linkedIn-link");
 const allImageElements = document.querySelectorAll(".task-descr img, .carousel-container");
 
 // Masquer les textes et images au départ
@@ -176,35 +176,43 @@ observer.observe(document.querySelector("#task-descr"));
     document.querySelector(".next").addEventListener("click", () => moveSlide(1));
     
     startAutoSlide();
-    
 
+    const menuToggle = document.querySelector(".menu-toggle");
+    const menuClose = document.querySelector(".menu-close");
+    const navbarNav = document.querySelector(".navbar-nav");
+    const body = document.body;
+    const navbar = document.querySelector(".navbar"); // Ajout de la sélection de la navbar
 
-    // Sélectionner les éléments nécessaires
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.getElementById("lightbox-img");
-    const closeBtn = document.querySelector(".lightbox .close");
+    // Gérer le clic sur le bouton menu-toggle
+    menuToggle.addEventListener("click", () => {
+        navbar.classList.add("fullscreen"); // La navbar prend toute la page
+        navbarNav.classList.add("show"); // Affiche les liens
+        body.classList.add("blurred"); // Désactive le défilement
+        menuToggle.style.display = "none"; // Cache le bouton hamburger
+        menuClose.style.display = "block"; // Affiche le bouton de fermeture
+    });
 
-    // Ajouter un événement de clic sur chaque image du carrousel
-    document.querySelectorAll(".carousel-images img").forEach(img => {
-        img.addEventListener("click", function () {
-            lightbox.style.display = "flex"; // Afficher la lightbox
-            lightboxImg.src = this.src; // Mettre à jour l'image de la lightbox
-            document.body.style.overflow = "hidden"; // Désactiver le défilement de la page
+    // Gérer le clic sur le bouton de fermeture
+    menuClose.addEventListener("click", () => {
+        navbar.classList.remove("fullscreen"); // Réduit la navbar
+        navbarNav.classList.remove("show"); // Cache les liens
+        body.classList.remove("blurred"); // Réactive le défilement
+        menuToggle.style.display = "block"; // Affiche le bouton hamburger
+        menuClose.style.display = "none"; // Cache le bouton de fermeture
+    });
+
+    // Gérer le clic sur les liens du menu
+    const menuLinks = document.querySelectorAll(".navbar-nav a");
+    menuLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            console.log(`Lien cliqué : ${link.getAttribute("href")}`); // Affiche le lien cliqué dans la console
+
+            // Fermer le menu après un clic sur un lien
+            navbar.classList.remove("fullscreen");
+            navbarNav.classList.remove("show");
+            body.classList.remove("blurred");
+            menuToggle.style.display = "block";
+            menuClose.style.display = "none";
         });
     });
-
-    // Fermer la lightbox lorsqu'on clique sur le bouton de fermeture
-    closeBtn.addEventListener("click", function () {
-        lightbox.style.display = "none";
-        document.body.style.overflow = "auto"; // Réactiver le défilement de la page
-    });
-
-    // Fermer la lightbox lorsqu'on clique en dehors de l'image
-    lightbox.addEventListener("click", function (event) {
-        if (event.target === lightbox) {
-            lightbox.style.display = "none";
-            document.body.style.overflow = "auto"; // Réactiver le défilement de la page
-        }
-    });
-
 });
