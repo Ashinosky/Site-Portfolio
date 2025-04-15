@@ -975,25 +975,34 @@
             left: 15%;
         }
 
-        .carousel-container {
-            width: 100vw; /* Limite la largeur du carousel */
-            height: 50vh; /* Ajuste la hauteur du carousel */
-            padding: 10px;
-            margin-top: 10vh;
-            top: 95%;
-            left: 0;
-        }
+.carousel-container {
+        width: 100vw;              /* Utilise toute la largeur de l'écran */
+        height: 50vh;              /* Hauteur adaptable */
+        padding: 10px;
+        margin: 0 auto;            /* Centre horizontalement */
+        position: relative;        /* Plus logique que absolute ici */
+        top: auto;                 /* Réinitialise le top s'il vient de la version desktop */
+        left: 0;
+    }
 
-        .carousel {
-            left: 0;
-        }
-        .carousel-images {
-            gap: 10px; /* Réduit l'espacement entre les images */
-        }
+    .carousel {
+        width: 100%;
+        overflow: hidden;
+    }
 
-        .carousel-images img {
-            top: 0;
-        }
+    .carousel-images {
+        display: flex;
+        justify-content: center;   /* Centre les images dans la ligne */
+        align-items: center;
+        gap: 10px;
+    }
+
+    .carousel-images img {
+        width: 90vw;               /* Prend presque toute la largeur */
+        height: auto;              /* Conserve les proportions */
+        top: 0;
+        object-fit: cover;
+    }
     
         /* --- Contact --- */
 
