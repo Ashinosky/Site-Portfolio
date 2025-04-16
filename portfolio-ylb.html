@@ -206,17 +206,17 @@
                         <a class="linkedIn-link" href="https://www.linkedin.com/in/yann-le-blanc/" target="_blank" rel="noopener noreferrer">Yann LE BLANC</a>
                     </div>
                 </div>
-                <div class="form">
+                <div class="form" action="contact-php/send_mail.php" method="POST">
                     <div class="form-container">
                             <div class="form-row">
-                                <input type="text" class="form-field half-width" placeholder="Nom">
-                                <input type="text" class="form-field half-width" placeholder="Prénom">
+                                <input type="text" class="form-field half-width" placeholder="Nom" required>
+                                <input type="text" class="form-field half-width" placeholder="Prénom" required>
                             </div>
                             <div class="form-row">
-                                <input type="email" class="form-field full-width" placeholder="E-mail">
+                                <input type="email" class="form-field full-width" placeholder="E-mail" required>
                             </div>
                             <div class="form-row">
-                                <textarea class="form-field full-width" placeholder="Message"></textarea>
+                                <textarea class="form-field full-width" placeholder="Message" required></textarea>
                             </div>
                             <div class="form-row">
                                 <button type="submit" class="bouton" style="top: 470px;">Envoyer</button>
