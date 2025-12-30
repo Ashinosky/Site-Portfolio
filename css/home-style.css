@@ -494,7 +494,10 @@
         font-weight: bold;
         color: #00ffbf;
     }
-    
+    .text-right span {
+       font-weight: bold;
+        color: #00ffbf;
+    }
     /* Contact */
     .contact {
         mask-image: linear-gradient(to top, black 85%, transparent 100%); /* Dégradé de masque */
