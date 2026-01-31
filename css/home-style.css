@@ -90,8 +90,14 @@
     }
 
     .navbar-nav a:hover {
-        text-decoration: underline; /* Souligner au survol */
         color: #00ffbf; /* Couleur au survol */
+        background: rgba(0, 255, 191, 0.15);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 255, 191, 0.4);
+        padding: 8px 16px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 20px rgba(0, 255, 191, 0.3);
     }
     
     .navbar-nav .active {
@@ -285,7 +291,8 @@
         font-size: 20px;
         font-weight: 400;
         color: white;
-        background: linear-gradient(#1a1f36, #00ffbf); /* Couleur de fond */
+        background: rgba(26, 31, 54, 0.6);
+        border: 2px solid rgba(0, 255, 191, 0.3);
         border-radius: 50px / 50%; /* Arrondi sur les côtés uniquement */
         flex-direction: column;
         display: flex;
@@ -293,11 +300,16 @@
         align-items: center;
         font-size: 20px;
         text-decoration: none;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        box-shadow: 0 0 20px rgba(0, 255, 191, 0.2);
     }
 
     .oval-box:hover {
-        text-decoration: underline;
-        
+        background: rgba(0, 255, 191, 0.2);
+        border: 2px solid rgba(0, 255, 191, 0.6);
+        box-shadow: 0 0 35px rgba(0, 255, 191, 0.5), inset 0 0 25px rgba(0, 255, 191, 0.15);
+        transform: scale(1.02);
     }
 
     /* Section Professional Skills */
@@ -617,7 +629,8 @@
     }
 
     .bouton {
-        background: linear-gradient(#1a1f36, #00ffbf);
+        background: rgba(26, 31, 54, 0.6);
+        border: 2px solid rgba(0, 255, 191, 0.3);
         border-radius: 10px;
         width: 120px;
         height: 50px;
@@ -625,11 +638,17 @@
         font-family: Electrolize, sans-serif;
         font-weight: 400;
         font-size: 15px;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        box-shadow: 0 0 15px rgba(0, 255, 191, 0.2);
+        cursor: pointer;
     }
 
     .bouton:hover {
-        text-decoration: underline;
-        
+        background: rgba(0, 255, 191, 0.2);
+        border: 2px solid rgba(0, 255, 191, 0.6);
+        box-shadow: 0 0 25px rgba(0, 255, 191, 0.5), inset 0 0 15px rgba(0, 255, 191, 0.15);
+        transform: scale(1.05);
     }
     
     .intro {
