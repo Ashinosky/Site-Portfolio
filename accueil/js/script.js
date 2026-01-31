@@ -95,14 +95,59 @@ allTextElements.forEach(element => {
 const textObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
         if (entry.isIntersecting && !entry.target.classList.contains("typed")) {
-            typeEffect(entry.target, 30);
+            // Si c'est le paragraphe de la section p-skills, préparer l'affichage des logos
+            const pSkillsSection = entry.target.closest(".p-skills");
+            const logosContainer = pSkillsSection ? pSkillsSection.querySelector(".skills-logos-container") : null;
+            
+            if (logosContainer && pSkillsSection && entry.target.tagName === "P") {
+                // Créer une version modifiée de typeEffect pour ce paragraphe
+                const text = entry.target.getAttribute("data-text");
+                entry.target.innerHTML = "";
+                let i = 0;
+                
+                const customType = () => {
+                    if (i < text.length) {
+                        entry.target.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(customType, 30);
+                    } else {
+                        // Animation terminée
+                        entry.target.classList.add("typed");
+                        // Les logos s'afficheront via l'observer avec délai de 7 secondes
+                    }
+                };
+                entry.target.style.opacity = "1";
+                customType();
+            } else {
+                // Pour les autres éléments, utiliser typeEffect normalement
+                typeEffect(entry.target, 30);
+            }
+            
             observer.unobserve(entry.target); // Arrête d'observer après l'animation
         }
     });
-}, { threshold: 0.3 }); // Augmenté légèrement
+}, { threshold: 0.3 });
 
 // Activer l'observation
 allTextElements.forEach(element => textObserver.observe(element));
+
+// Observer spécifique pour les logos avec délai de 15 secondes
+const skillLogos = document.querySelectorAll(".skills-logos-container .skill-logo");
+if (skillLogos.length > 0) {
+    const logosObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Afficher les logos après 15 secondes
+                setTimeout(() => {
+                    entry.target.classList.add("show");
+                    observer.unobserve(entry.target);
+                }, 15000); // 15 secondes = 15000ms
+            }
+        });
+    }, { threshold: 0.4 });
+    
+    skillLogos.forEach(logo => logosObserver.observe(logo));
+}
 
 
     /* Scroll fluide et centré */
