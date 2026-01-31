@@ -220,4 +220,50 @@ if (skillLogos.length > 0) {
         });
     });
 
+    // Animation de frappe pour le sous-titre
+    const typewriterTerms = [
+        "Ingénieur diplômé ESIEA spécialisé en systèmes embarqués",
+        "Ingénieur Systèmes & Qualité", 
+        "Passionné par l'innovation technologique"
+    ];
+
+    let currentTermIndex = 0;
+    let currentCharIndex = 0;
+    let isDeleting = false;
+    const typingElement = document.querySelector(".typing-text");
+
+    function typewriterEffect() {
+        const currentTerm = typewriterTerms[currentTermIndex];
+        
+        if (!isDeleting) {
+            // Écriture
+            if (currentCharIndex < currentTerm.length) {
+                typingElement.textContent += currentTerm.charAt(currentCharIndex);
+                currentCharIndex++;
+                setTimeout(typewriterEffect, 80); // Vitesse d'écriture
+            } else {
+                // Pause avant effacement
+                setTimeout(() => {
+                    isDeleting = true;
+                    typewriterEffect();
+                }, 2000);
+            }
+        } else {
+            // Effacement
+            if (currentCharIndex > 0) {
+                typingElement.textContent = currentTerm.substring(0, currentCharIndex - 1);
+                currentCharIndex--;
+                setTimeout(typewriterEffect, 50); // Vitesse d'effacement
+            } else {
+                // Passer au terme suivant
+                isDeleting = false;
+                currentTermIndex = (currentTermIndex + 1) % typewriterTerms.length;
+                setTimeout(typewriterEffect, 500); // Pause avant le prochain terme
+            }
+        }
+    }
+
+    // Démarrer l'animation après un court délai
+    setTimeout(typewriterEffect, 500);
+
 });
