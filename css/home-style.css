@@ -225,6 +225,12 @@
         max-width: 100%;
         max-height: 100%;
         object-fit: contain;
+        transition: filter 0.3s ease, drop-shadow 0.3s ease;
+    }
+
+    .home_text a:hover img {
+        filter: drop-shadow(0 0 20px rgba(0, 255, 191, 0.8));
+    }
     }
     /* Cacher - Montrer des éléments */
     .hidden, .hidden_1, .hidden_x { /* Pour les éléments de la première section */
@@ -271,6 +277,45 @@
         max-width: 800px; /* Pour limiter la largeur du paragraphe */
         margin: 0 auto 40px; /* Centrage automatique */
         line-height: 1.6; /* Meilleure lisibilité */
+    }
+
+    .subtitle {
+        font-family: 'Beam Weapon Condensed', sans-serif;
+        font-weight: 300;
+        font-size: 25px;
+        color: #d8d8d8;
+        max-width: 1200px; /* Pour limiter la largeur du paragraphe */
+        margin: -80px auto 40px; /* Décalage vers le haut pour rapprocher du titre */
+        line-height: 1.6; /* Meilleure lisibilité */
+        min-height: 45px;
+    }
+
+    .terminal-prompt {
+        color: #d8d8d8;
+        margin-right: 10px;
+        font-size: 30px;
+    }
+
+    .typing-text {
+        display: inline-block;
+    }
+
+    .cursor {
+        display: inline-block;
+        width: 3px;
+        height: 36px;
+        background-color: #d8d8d8;
+        margin-left: 5px;
+        animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink {
+        0%, 50% {
+            opacity: 1;
+        }
+        51%, 100% {
+            opacity: 0;
+        }
     }
 
     .accueil p {
