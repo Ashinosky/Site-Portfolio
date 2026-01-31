@@ -316,6 +316,7 @@
     .p-skills { 
         text-align: center;
         padding: 50px 20px;
+        position: relative;
     }
     
     .p-skills p {
@@ -365,6 +366,63 @@
 
     .skill-content p {
         margin: 5px 0;
+    }
+
+    /* Conteneur des logos alignés */
+    .skills-logos-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 70px;
+        margin: 40px 0;
+    }
+
+    /* Logos alignés */
+    .skills-logos-container .skill-logo {
+        position: relative;
+        height: 80px;
+        width: auto;
+        object-fit: contain;
+        transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    /* Les logos héritent de .hidden */
+    .skills-logos-container .skill-logo.hidden {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    /* Quand les logos reçoivent la classe show */
+    .skills-logos-container .skill-logo.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .skills-logos-container .skill-logo:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+
+    .skills-logos-container .skill-logo:nth-child(2) {
+        transition-delay: 0.2s;
+    }
+
+    .skills-logos-container .skill-logo:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+
+    .skills-logos-container .skill-logo:nth-child(4) {
+        transition-delay: 0.4s;
+    }
+
+    .skills-logos-container .skill-logo:nth-child(5) {
+        transition-delay: 0.5s;
+    }
+
+    .skills-logos-container .skill-logo:hover {
+        transform: scale(1.15);
+        filter: drop-shadow(0 0 20px rgba(0, 255, 191, 0.6));
     }
 
     .projets {
