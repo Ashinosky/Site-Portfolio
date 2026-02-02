@@ -215,4 +215,24 @@ observer.observe(document.querySelector("#task-descr"));
             menuClose.style.display = "none";
         });
     });
+
+    // Gestion du bouton scroll to top
+    const scrollToTopBtn = document.getElementById("scrollToTop");
+
+    // Afficher/cacher le bouton selon la position du scroll
+    window.addEventListener("scroll", function() {
+        if (window.scrollY > 300) {
+            scrollToTopBtn.classList.add("show");
+        } else {
+            scrollToTopBtn.classList.remove("show");
+        }
+    });
+
+    // Remonter en haut au clic
+    scrollToTopBtn.addEventListener("click", function() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
 });
