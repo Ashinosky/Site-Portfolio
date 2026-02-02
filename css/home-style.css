@@ -83,7 +83,7 @@
         text-decoration: none;
         font-size: 20;
         text-transform: uppercase;
-        transition: color 0.3s;
+        transition: all 0.3s ease;
         font-family: Electrolize, sans-serif;
         font-weight: bold;
         margin: 0 40px; /* Ajoute un espacement horizontal de 50px de chaque côté */
@@ -96,7 +96,6 @@
         border: 1px solid rgba(0, 255, 191, 0.4);
         padding: 8px 16px;
         border-radius: 20px;
-        transition: all 0.3s ease;
         box-shadow: 0 0 20px rgba(0, 255, 191, 0.3);
     }
     
@@ -231,7 +230,7 @@
     .home_text a:hover img {
         filter: drop-shadow(0 0 20px rgba(0, 255, 191, 0.8));
     }
-    }
+    
     /* Cacher - Montrer des éléments */
     .hidden, .hidden_1, .hidden_x { /* Pour les éléments de la première section */
         opacity: 0; /* Cache les éléments au départ */
@@ -659,28 +658,45 @@
         display: flex;
         left: 50px;
         align-items: center;
+        transition: all 0.3s ease;
+        width: fit-content;
+    }
+
+    .loc-container:hover, .tel-container:hover, .mail-container:hover, .linkedIn-container:hover {
+        color: #00ffbf; /* Couleur au survol */
+        background: rgba(0, 255, 191, 0.15);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 255, 191, 0.4);
+        padding: 8px 16px;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0, 255, 191, 0.3);
+    }
+
+    .loc-container a, .tel-container a, .mail-container a, .linkedIn-container a { /* Conteneurs des liens */
+        color: #ffffff;
+        transition: all 0.3s ease;
+    }
+
+    .loc-container:hover a, .tel-container:hover a, .mail-container:hover a, .linkedIn-container:hover a {
+        color: #00ffbf;
     }
 
     .loc-container i, .tel-container i, .mail-container i, .linkedIn-container i { /* Icones */
         font-size: 40px;
         margin-right: 20px;
-        color: #ffffff;
+        transition: all 0.3s ease;
     }
 
-    .loc-container i:hover, .tel-container i:hover, .mail-container i:hover, .linkedIn-container i:hover {
+    .loc-container:hover i, .tel-container:hover i, .mail-container:hover i, .linkedIn-container:hover i {
         color: #00ffbf;
     }
+
     .loc-link, .tel-link, .mail-link, .linkedIn-link { /* Liens */
         font-family: Electrolize, sans-serif;
         font-weight: 400;
         font-size: 18px;
-        text-decoration: none; /* Ajout de soulignement au survol */
+        text-decoration: none;
         color: white;
-    }
-
-    .loc-link:hover, .tel-link:hover, .mail-link:hover, .linkedIn-link:hover {
-        color: #00ffbf;
-        text-decoration: underline;
     }
 
     .form {
