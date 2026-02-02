@@ -73,27 +73,26 @@
             margin-right: 50px;
         }
 
-        .navbar-nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 20;
-            text-transform: uppercase;
-            transition: color 0.3s;
-            font-family: Electrolize, monospace;
-            font-weight: bold;
-            margin: 0 40px; /* Ajoute un espacement horizontal de 50px de chaque côté */
-        }
+    .navbar-nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 20;
+        text-transform: uppercase;
+        transition: all 0.3s ease !important;
+        font-family: Electrolize, sans-serif;
+        font-weight: bold;
+        margin: 0 40px; /* Ajoute un espacement horizontal de 50px de chaque côté */
+    }
 
-        .navbar-nav a:hover {
-            color: #00ffbf;
-            background: rgba(0, 255, 191, 0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 255, 191, 0.4);
-            padding: 8px 16px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(0, 255, 191, 0.3);
-        }
+    .navbar-nav a:hover {
+        color: #00ffbf; /* Couleur au survol */
+        background: rgba(0, 255, 191, 0.15);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 255, 191, 0.4);
+        padding: 8px 16px;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0, 255, 191, 0.3);
+    }
         
         .navbar-nav .active {
             color: #f0a500;
@@ -102,22 +101,16 @@
         .navbar-nav a.hidden {
             transform: translateX(50px);
         }
-        /* Animation de la flèche de l'accueil */
-        @keyframes floatAnimation {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-25px); /* Monte de 15px */
-            }
-            100% {
-                transform: translateY(0);
-            }
-        }
+        
         /* Cacher - Montrer des éléments */
         .hidden, .hidden_1, .hidden_x { /* Pour les éléments de la première section */
             opacity: 0; /* Cache les éléments au départ */
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        /* Exception : les liens de navbar gardent leur propre transition */
+        .navbar-nav a.hidden_x {
+            transition: all 0.3s ease !important;
         }
 
         .hidden {
@@ -229,45 +222,45 @@
             display: flex;
             left: 50px;
             align-items: center;
+            transition: all 0.3s ease;
+            width: fit-content;
+        }
+
+        .loc-container:hover, .tel-container:hover, .mail-container:hover, .linkedIn-container:hover {
+            color: #00ffbf; /* Couleur au survol */
+            background: rgba(0, 255, 191, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 191, 0.4);
+            padding: 8px 16px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 191, 0.3);
         }
 
         .loc-container a, .tel-container a, .mail-container a, .linkedIn-container a { /* Conteneurs des liens */
             color: #ffffff;
+            transition: all 0.3s ease;
         }
 
-        .loc-container a:hover, .tel-container a:hover, .mail-container a:hover, .linkedIn-container a:hover {
+        .loc-container:hover a, .tel-container:hover a, .mail-container:hover a, .linkedIn-container:hover a {
             color: #00ffbf;
-            background: rgba(0, 255, 191, 0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 255, 191, 0.4);
-            padding: 8px 12px;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 255, 191, 0.3);
         }
 
         .loc-container i, .tel-container i, .mail-container i, .linkedIn-container i { /* Icones */
             font-size: 40px;
             margin-right: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .loc-container:hover i, .tel-container:hover i, .mail-container:hover i, .linkedIn-container:hover i {
+            color: #00ffbf;
         }
 
         .loc-link, .tel-link, .mail-link, .linkedIn-link { /* Liens */
             font-family: Electrolize, sans-serif;
             font-weight: 400;
             font-size: 18px;
-            text-decoration: none; /* Ajout de soulignement au survol */
+            text-decoration: none;
             color: white;
-        }
-
-        .loc-link:hover, .tel-link:hover, .mail-link:hover, .linkedIn-link:hover {
-            color: #00ffbf;
-            background: rgba(0, 255, 191, 0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 255, 191, 0.4);
-            padding: 8px 12px;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 255, 191, 0.3);
         }
 
         .form {
@@ -548,7 +541,7 @@
 
     }
 
-    button {
+    .carousel-container button {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
@@ -561,15 +554,15 @@
         z-index: 2;
     }
 
-    button.prev {
+    .carousel-container button.prev {
         left: 10px;
     }
 
-    button.next {
+    .carousel-container button.next {
         right: 10px;
     }
 
-    button:hover {
+    .carousel-container button:hover {
         background-color: rgba(0, 0, 0, 0.8);
     }
 
@@ -864,7 +857,7 @@
             font-size: 20px;
             font-weight: bold;
             margin: 10px 0;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
             position: relative;
             left: -2vw;
         }
