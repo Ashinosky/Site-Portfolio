@@ -223,7 +223,7 @@ if (skillLogos.length > 0) {
     // Animation de frappe pour le sous-titre
     const typewriterTerms = [
         "Ingénieur diplômé ESIEA spécialisé en systèmes embarqués",
-        "Ingénieur Systèmes & Qualité", 
+        "Ingénieur Système & Qualité", 
         "Passionné par l'innovation technologique"
     ];
 
