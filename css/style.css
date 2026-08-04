@@ -668,6 +668,11 @@
             margin-top: 100px;
             gap: 30px;
         }
+                
+        .task-descr-right {
+            width: 60vw; /* Réduction de la largeur */
+            margin-left: 55%; /* Ajustement de la marge */
+        }
         
         .logo-container {
             width: 1000px; /* Réduction de la taille initiale du logo */
