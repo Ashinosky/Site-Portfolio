@@ -406,9 +406,6 @@
             padding: 20px;
             width: 100%;
             min-height: 100vh;
-        }
-
-        .task-descr  {
             text-align: left;
             height: 100%;
         }
@@ -459,7 +456,31 @@
             left: 20px;
             border-radius: 10px;
         }
+        .sncf-reseau {
+            position: absolute;
+            top: 26%;          /* ajuster pour correspondre à l'écran normal */
+            left: 62%;         /* ajuster pour correspondre à l'écran normal */
+            width: 150px;      /* taille de base sur desktop */
+            max-width: 35vw;   /* s'adapte si la fenêtre devient petite */
+            height: auto;
+            transform: translate(-50%, -50%); /* centre l'image sur le point top/left */
+            transition: top 0.2s ease, left 0.2s ease, width 0.2s ease;
+            z-index: 50;       /* s'assure qu'elle soit au-dessus/au-dessous selon besoin */
+        }
 
+        .esiea {
+            position: absolute;
+            top: 26%;          /* ajuster pour correspondre à l'écran normal */
+            left: 62%;         /* ajuster pour correspondre à l'écran normal */
+            width: 150px;      /* taille de base sur desktop */
+            max-width: 35vw;   /* s'adapte si la fenêtre devient petite */
+            height: auto;
+            transform: translate(-50%, -50%); /* centre l'image sur le point top/left */
+            transition: top 0.2s ease, left 0.2s ease, width 0.2s ease;
+            z-index: 50;       /* s'assure qu'elle soit au-dessus/au-dessous selon besoin */
+        }
+
+        
         .task-descr-right {
             width: 55vw;
             height: 80vh;
