@@ -651,10 +651,17 @@
             height: 80px; /* Taille du logo réduite */
         }
 
+    @media screen and (max-width: 1366px) {
+        /* Réduit la taille et évite le chevauchement des liens de la navbar */
         .navbar-nav a {
-            font-size: 14px; /* Réduit la taille du texte */
-            margin: 0 12px; /* Moins d'espace entre les éléments */
-            padding: 8px 10px;
+            font-size: 13px;               /* taille plus petite sur portable */
+            margin: 0 10px;                /* moins d'espacement horizontal */
+            padding: 6px 8px;              /* padding réduit */
+            max-width: 140px;              /* limite la largeur d'un lien */
+            display: inline-block;         /* nécessaire pour text-overflow */
+            white-space: nowrap;           /* empêche le retour à la ligne */
+            overflow: hidden;              /* masque le texte qui déborde */
+            text-overflow: ellipsis;       /* "..." si le texte est trop long */
         }
 
         .main-content {
