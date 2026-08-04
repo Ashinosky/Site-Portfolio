@@ -641,7 +641,7 @@
         }
     }
         
-    /* Responsive pour PC portable (moins de 1366px de largeur) */
+/* Responsive pour PC portable (moins de 1366px de largeur) */
     @media screen and (max-width: 1366px) {
         .navbar {
             padding: 15px 30px; /* Réduction du padding */
@@ -650,7 +650,7 @@
         .navbar img {
             height: 80px; /* Taille du logo réduite */
         }
-        
+
         /* Réduit la taille et évite le chevauchement des liens de la navbar */
         .navbar-nav a {
             font-size: 13px;               /* taille plus petite sur portable */
@@ -667,8 +667,8 @@
             margin-top: 100px;
             gap: 30px;
         }
-
-        .task-descr-right h2{
+        
+        .task-descr-right h2 {
             width: 60vw; /* Réduction de la largeur */
         }
 
@@ -681,12 +681,11 @@
             grid-template-columns: repeat(3, 400px); /* Réduction de la largeur des colonnes */
             gap: 15px; /* Réduction de l'espacement entre les éléments */
         }
-        
         .menu-container a {
             width: 400px; /* Réduction de la largeur des liens */
             height: 300px; /* Réduction de la hauteur des liens */
         }
-                
+
         .logo-container {
             width: 1000px; /* Réduction de la taille initiale du logo */
         }
@@ -707,6 +706,7 @@
             font-size: 16px; /* Réduction de la taille des textes */
         }
     }
+
 
     /* Responsive pour tablette (moins de 1024px de largeur) */
     @media screen and (max-width: 1024px) {
