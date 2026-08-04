@@ -657,7 +657,7 @@
             font-size: 13px;               /* taille plus petite sur portable */
             margin: 0 10px;                /* moins d'espacement horizontal */
             padding: 6px 8px;              /* padding réduit */
-            max-width: 140px;              /* limite la largeur d'un lien */
+            max-width: 150px;              /* limite la largeur d'un lien */
             display: inline-block;         /* nécessaire pour text-overflow */
             white-space: nowrap;           /* empêche le retour à la ligne */
             overflow: hidden;              /* masque le texte qui déborde */
