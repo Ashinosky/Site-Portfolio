@@ -650,8 +650,7 @@
         .navbar img {
             height: 80px; /* Taille du logo réduite */
         }
-
-    @media screen and (max-width: 1366px) {
+        
         /* Réduit la taille et évite le chevauchement des liens de la navbar */
         .navbar-nav a {
             font-size: 13px;               /* taille plus petite sur portable */
