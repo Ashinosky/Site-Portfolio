@@ -652,8 +652,9 @@
         }
 
         .navbar-nav a {
-            font-size: 18px;
-            margin: 0 20px; /* Moins d'espace entre les éléments */
+            font-size: 14px; /* Réduit la taille du texte */
+            margin: 0 12px; /* Moins d'espace entre les éléments */
+            padding: 8px 10px;
         }
 
         .main-content {
