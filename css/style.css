@@ -667,7 +667,7 @@
             margin-top: 100px;
             gap: 30px;
         }
-                
+
         .task-descr-right h2{
             width: 60vw; /* Réduction de la largeur */
         }
@@ -676,7 +676,17 @@
             width: 40vw; /* Réduction de la largeur */
             height: auto; /* Ajuste la hauteur automatiquement */
         }
+
+        .menu-container {
+            grid-template-columns: repeat(3, 400px); /* Réduction de la largeur des colonnes */
+            gap: 15px; /* Réduction de l'espacement entre les éléments */
+        }
         
+        .menu-container a {
+            width: 400px; /* Réduction de la largeur des liens */
+            height: 300px; /* Réduction de la hauteur des liens */
+        }
+                
         .logo-container {
             width: 1000px; /* Réduction de la taille initiale du logo */
         }
