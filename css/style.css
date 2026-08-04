@@ -355,10 +355,10 @@
 
         .menu-container{
             margin-top: 100px;
-            display: flex;
-            justify-content: space-around; /*Distribue espace entre les objets*/
-            align-items: flex-end; /*Aligne les objets en bas*/
-            gap: 20px; /*Optionnal : espacement supplémentaire entre les éléments*/
+            display: grid;
+            grid-template-columns: repeat(3, 500px); /* 3 colonnes de 250px chacune */
+            justify-content: center; /* Centre le contenu horizontalement */
+            gap: 20px;
         }
 
         .selection {
@@ -509,8 +509,8 @@
         margin-bottom: 70px;
         position: absolute;
         overflow: hidden; /* Cache les images qui dépassent du conteneur */
-        left: 25%; /* Centre le carousel */
-        top: 40%;
+        left: 30%; /* Centre le carousel */
+        top: 45%;
     }
 
     .carousel {
