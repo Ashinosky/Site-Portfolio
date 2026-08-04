@@ -671,6 +671,11 @@
         .task-descr-right h2{
             width: 60vw; /* Réduction de la largeur */
         }
+
+        .task-descr img {
+            width: 40vw; /* Réduction de la largeur */
+            height: auto; /* Ajuste la hauteur automatiquement */
+        }
         
         .logo-container {
             width: 1000px; /* Réduction de la taille initiale du logo */
