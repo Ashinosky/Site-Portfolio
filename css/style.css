@@ -686,6 +686,10 @@
             height: 300px; /* Réduction de la hauteur des liens */
         }
 
+        .overlay-text {
+            font-size: 18px; /* Réduction de la taille du texte */
+        }
+
         .logo-container {
             width: 1000px; /* Réduction de la taille initiale du logo */
         }
