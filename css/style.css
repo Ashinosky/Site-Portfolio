@@ -670,7 +670,6 @@
                 
         .task-descr-right h2{
             width: 60vw; /* Réduction de la largeur */
-            margin-left: 45%; /* Ajustement de la marge */
         }
         
         .logo-container {
