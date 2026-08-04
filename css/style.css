@@ -669,7 +669,7 @@
             gap: 30px;
         }
                 
-        .task-descr-right {
+        .task-descr-right h2{
             width: 60vw; /* Réduction de la largeur */
             margin-left: 55%; /* Ajustement de la marge */
         }
