@@ -408,6 +408,7 @@
             min-height: 100vh;
             text-align: left;
             height: 100%;
+            position: relative; /* permet aux images position:absolute d'être placées par rapport à cette section */
         }
 
         .task-descr p  {
@@ -442,7 +443,7 @@
             display: flex;
         }
 
-        .task-descr img {
+        .task-descr img:not(.sncf-reseau) {
             width: 45vw;
             height: auto;
             border-radius: 10px;
@@ -458,14 +459,13 @@
         }
         .sncf-reseau {
             position: absolute;
-            top: 26%;          /* ajuster pour correspondre à l'écran normal */
-            left: 62%;         /* ajuster pour correspondre à l'écran normal */
-            width: 150px;      /* taille de base sur desktop */
-            max-width: 35vw;   /* s'adapte si la fenêtre devient petite */
+            top: 20px;                 /* en haut du bloc texte */
+            right: 40px;               /* à droite du titre/textes */
+            width: clamp(90px, 8vw, 180px); /* responsive : légèrement réduite */
             height: auto;
-            transform: translate(-50%, -50%); /* centre l'image sur le point top/left */
-            transition: top 0.2s ease, left 0.2s ease, width 0.2s ease;
-            z-index: 50;       /* s'assure qu'elle soit au-dessus/au-dessous selon besoin */
+            border-radius: 10px;
+            transition: top 0.2s ease, right 0.2s ease, width 0.2s ease;
+            z-index: 50;
         }
 
         .esiea {
@@ -482,13 +482,13 @@
 
         
         .task-descr-right {
-            width: 55vw;
-            height: 80vh;
-            margin-left: 60%;
+            width: 45vw;
+            height: auto;           /* laisse la hauteur s'adapter au contenu */
+            margin-left: 0;
             text-align: justify;
-            position: relative;
-            right: 50px;
-            top: -300px;
+            position: absolute;
+            left: 50vw;
+            top: 320px;
         }
 
         .task-descr-right h1 {
@@ -496,10 +496,10 @@
             font-weight: 400;
             font-size: 25px;
             color: white;
-            width: 40vw;
-            right: 5%;
+            width: 100%;
+            right: 0;
             position: relative;
-            top: -5%;
+            top: 0;
         }
 
         .task-descr-right h2 {
@@ -525,13 +525,11 @@
         }
         
     .carousel-container {
-        width: 800px; /* Largeur fixe pour afficher une seule image */
-        height: 600px; /* Hauteur fixe pour le carousel */
-        margin-bottom: 70px;
-        position: absolute;
-        overflow: hidden; /* Cache les images qui dépassent du conteneur */
-        left: 30%; /* Centre le carousel */
-        top: 45%;
+        width: min(800px, 90%); /* largeur max 800px, sinon 90% de la fenêtre */
+        height: auto;
+        margin: 8px auto 16px; /* réduit encore l'espace entre le texte et le carousel */
+        position: relative; /* reste dans le flux pour s'afficher sous le contenu */
+        overflow: hidden;
     }
 
     .carousel {
@@ -1013,7 +1011,7 @@
             width: 90%; /* Limite la largeur du texte */
         }
 
-        .task-descr img {
+        .task-descr img:not(.sncf-reseau) {
             width: 90vw; /* Limite la largeur de l'image */
             height: auto; /* Ajuste la hauteur automatiquement */
             top: 100vh;
@@ -1034,7 +1032,7 @@
             width: 85vw; /* Limite la largeur du texte */
         }
 
-        .task-descr img {
+        .task-descr img:not(.sncf-reseau) {
             top: 75px;
             left: -1vw;
         }
@@ -1057,13 +1055,11 @@
         }
 
    .carousel-container {
-            width: 100vw; /* Limite la largeur du carousel */
-            height: 50vh; /* Ajuste la hauteur du carousel */
-            padding: 10px;
-            margin-top: 10vh;
-            top: 95%;
-            left: 0;
-        }
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        margin: 8px 0 6px;
+    }
 
         .carousel {
             left: 0;
@@ -1212,6 +1208,211 @@
     .scroll-to-top.show {
         opacity: 1;
         visibility: visible;
+    }
+
+    @media screen and (min-width: 769px) {
+        .task-descr {
+            top: auto;
+            left: auto;
+            display: block;
+        }
+
+        .task-descr-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            grid-template-rows: auto auto auto auto auto auto;
+            column-gap: clamp(24px, 4vw, 70px);
+            row-gap: 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: start;
+            margin-top: clamp(-110px, -8vw, -70px);
+            position: relative;
+        }
+
+        .task-descr-left,
+        .task-descr-info,
+        .task-descr-right {
+            display: contents;
+        }
+
+        .task-descr-info {
+            min-width: 0;
+        }
+
+        .task-descr-info h1 {
+            grid-column: 1;
+            grid-row: 1;
+            display: block;
+            width: 100%;
+            font-size: clamp(36px, 4vw, 60px);
+            margin: 0 0 20px;
+        }
+
+        .task-descr-info .project-type-label {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        .task-descr-info .project-type-value {
+            grid-column: 1;
+            grid-row: 3;
+        }
+
+        .task-descr-info .project-date-label {
+            grid-column: 1;
+            grid-row: 4;
+        }
+
+        .task-descr-info .project-date-value {
+            grid-column: 1;
+            grid-row: 5;
+        }
+
+        .task-descr-info p {
+            width: 100%;
+            position: static;
+        }
+
+        .task-descr-info .project-type-label,
+        .task-descr-info .project-date-label {
+            margin: 0;
+        }
+
+        .task-descr-info .project-type-value {
+            margin: 0 0 12px;
+        }
+
+        .task-descr-info .project-date-value {
+            margin: 0;
+        }
+
+        .task-descr-info .project-type-label,
+        .task-descr-info .project-date-label {
+            margin: 0;
+        }
+
+        .task-descr-info .project-type-value {
+            margin: 0 0 12px;
+        }
+
+        .task-descr-info .project-date-value {
+            margin: 0;
+        }
+
+        .task-descr .tdr-python {
+            grid-column: 1;
+            grid-row: 6;
+            display: block;
+            position: static !important;
+            width: 100% !important;
+            max-width: 650px;
+            margin: 74px 0 0;
+        }
+
+        .task-descr-right .sncf-reseau {
+            grid-column: 2;
+            grid-row: 2;
+            display: block;
+            position: absolute;
+            justify-self: center;
+            align-self: start;
+            width: clamp(170px, 17vw, 300px) !important;
+            max-width: 100%;
+            margin: 0 auto;
+            top: -90px;
+            left: 50%;
+            right: auto;
+            transform: translateX(-50%) !important;
+        }
+
+        .task-descr-right .akkodis-logo {
+            width: clamp(340px, 38vw, 620px) !important;
+        }
+
+        .task-descr-right .akkodis-description {
+            width: calc(100% - 80px);
+        }
+
+        .task-descr-right h1 {
+            grid-column: 2;
+            grid-row: 6;
+            display: block;
+            width: calc(100% - 40px);
+            position: static;
+            margin: 74px 0 0;
+        }
+
+        .carousel-container {
+            clear: both;
+            margin-top: clamp(82px, calc(5vw + 50px), 120px);
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .task-descr {
+            top: auto;
+            left: auto;
+            display: block;
+        }
+
+        .task-descr-layout {
+            display: flex;
+            flex-direction: column;
+            width: min(90vw, 620px);
+            margin: -275px auto 0;
+        }
+
+        .task-descr-left,
+        .task-descr-right {
+            display: contents;
+        }
+
+        .task-descr-info h1 {
+            order: 1;
+            display: block;
+            width: 100%;
+            font-size: 40px;
+            margin: 0 0 20px;
+        }
+
+        .task-descr-info p {
+            order: 1;
+            width: 100%;
+            position: static;
+        }
+
+        .task-descr .tdr-python {
+            order: 4;
+            display: block;
+            position: static !important;
+            width: 100% !important;
+            margin: 24px auto 0;
+        }
+
+        .task-descr-right .sncf-reseau {
+            order: 2;
+            display: block;
+            position: static;
+            width: clamp(70px, 22vw, 120px) !important;
+            max-width: 100%;
+            margin: 40px auto 28px;
+            left: auto !important;
+            right: auto !important;
+            transform: none !important;
+        }
+
+        .task-descr-right h1 {
+            order: 3;
+            display: block;
+            width: 100%;
+            position: static;
+            margin: 0;
+        }
+
+        .carousel-container {
+            margin-top: 32px;
+        }
     }
     
     </style>
