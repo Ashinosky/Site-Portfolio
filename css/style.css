@@ -1325,6 +1325,10 @@
             width: 35.6vw !important;
         }
 
+        .task-descr .html-css-image {
+            align-self: center;
+        }
+
         .task-descr-right .sncf-reseau {
             grid-column: 2;
             grid-row: 2;
