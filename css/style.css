@@ -443,6 +443,10 @@
             display: flex;
         }
 
+        .akkodis-page .task-descr-info h1 {
+            margin-bottom: 0;
+        }
+
         .task-descr img:not(.sncf-reseau) {
             width: 45vw;
             height: auto;
@@ -455,6 +459,7 @@
             position: absolute;
             top: 530px;
             left: 20px;
+            width: 27vw !important;
             border-radius: 10px;
         }
         .sncf-reseau {
@@ -1305,9 +1310,19 @@
             grid-row: 6;
             display: block;
             position: static !important;
-            width: 100% !important;
+            justify-self: center;
+            width: 60% !important;
             max-width: 650px;
-            margin: 74px 0 0;
+            margin: 74px auto 0;
+        }
+
+        .task-descr .radar2d-image {
+            width: 32.4vw !important;
+        }
+
+        .task-descr .esieabot-image {
+            align-self: center;
+            width: 35.6vw !important;
         }
 
         .task-descr-right .sncf-reseau {
@@ -1327,7 +1342,14 @@
         }
 
         .task-descr-right .akkodis-logo {
+            grid-column: 2;
+            grid-row: 1;
+            position: static;
+            justify-self: center;
+            align-self: center;
             width: clamp(340px, 38vw, 620px) !important;
+            margin: 0;
+            transform: none !important;
         }
 
         .task-descr-right .akkodis-description {
@@ -1386,8 +1408,16 @@
             order: 4;
             display: block;
             position: static !important;
-            width: 100% !important;
+            width: 60% !important;
             margin: 24px auto 0;
+        }
+
+        .task-descr .radar2d-image {
+            width: 72% !important;
+        }
+
+        .task-descr .esieabot-image {
+            width: 80% !important;
         }
 
         .task-descr-right .sncf-reseau {
